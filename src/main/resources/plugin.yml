@@ -1,0 +1,20 @@
+name: McShop
+version: ${project.version}
+main: de.simonfredrich.mcshop.McShop
+api-version: 1.16
+authors: [ fredax74 ]
+description: This paper plugin adds a shop to your server.
+website: simonfredrich.de
+
+commands:
+  heal:
+    description: This command heals you.
+    aliases: ["he"]
+  hurt:
+    description: This command hurts you.
+    aliases: [ "hu" ]
+
+permissions:
+  de.simonfredrich.mcshop.heal:
+    description: This command heals you.
+    default: op
