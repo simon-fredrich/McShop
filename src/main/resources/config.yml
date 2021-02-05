@@ -116,3 +116,9 @@ blocks:
   sword-blocks:
     - MELON_BLOCK
     - WEB
+
+enchantments:
+  elderstaebe:
+    - Elderstab Standard
+    - Elderstab Advanced
+    - Elderstab Pro

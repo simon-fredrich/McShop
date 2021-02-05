@@ -1,6 +1,8 @@
 package de.simonfredrich.mcshop;
 
 import de.simonfredrich.mcshop.block_interaction.BlockCrusher;
+import de.simonfredrich.mcshop.block_interaction.Elderstab;
+import de.simonfredrich.mcshop.block_interaction.PreventThrow;
 import de.simonfredrich.mcshop.commands.HealCommand;
 import de.simonfredrich.mcshop.commands.HurtCommand;
 import org.bukkit.Bukkit;
@@ -11,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -27,7 +30,8 @@ public final class McShop extends JavaPlugin implements Listener {
         INSTANCE = this;
     }
 
-    public ArrayList<Material> configPickaxeBlocks = new ArrayList<Material>();
+    public ArrayList<Material> configPickaxeBlocks = new ArrayList<>();
+    public ArrayList<ItemStack> configElderstaebe = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -60,9 +64,12 @@ public final class McShop extends JavaPlugin implements Listener {
     }
 
     private void register() {
-        Bukkit.getPluginCommand("heal").setExecutor(new HealCommand());
-        Bukkit.getPluginCommand("hurt").setExecutor(new HurtCommand());
-        Bukkit.getPluginManager().registerEvents(new BlockCrusher(), this);
+        //Bukkit.getPluginCommand("heal").setExecutor(new HealCommand());
+        //Bukkit.getPluginCommand("hurt").setExecutor(new HurtCommand());
+        //Bukkit.getPluginManager().registerEvents(new BlockCrusher(), this);
+        Elderstab elderstab = new Elderstab();
+        elderstab.startRunnable();
+        Bukkit.getPluginManager().registerEvents(new PreventThrow(), this);
     }
 
     private void load_config() {
@@ -71,6 +78,10 @@ public final class McShop extends JavaPlugin implements Listener {
             if(Material.getMaterial(s) != null){
                 configPickaxeBlocks.add(Material.getMaterial(s));
             }
+        }
+        List<String> loadElderstaebe = McShop.this.getConfig().getStringList("items.elderstaebe");
+        for (String s: loadElderstaebe) {
+            ItemStack stab;
         }
     }
 }
