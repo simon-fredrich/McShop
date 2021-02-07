@@ -3,6 +3,7 @@ package de.simonfredrich.mcshop.block_interaction;
 import de.simonfredrich.mcshop.McShop;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -14,8 +15,11 @@ public class Elderstab {
         for(Player player : Bukkit.getOnlinePlayers()){
             player.getInventory().getItemInMainHand();
             ItemStack hand = player.getInventory().getItemInMainHand();
-            if(hand.getType().equals(Material.STICK)){
+            if(hand.getType().equals(Material.BLAZE_ROD) && hand.getItemMeta().getEnchants().containsKey(Enchantment.FIRE_ASPECT)){
                 give_fireresistance(player);
+            }
+            if(hand.getType().equals(Material.BLAZE_ROD) && hand.getItemMeta().getEnchants().containsKey(Enchantment.PROTECTION_ENVIRONMENTAL)) {
+                give_regeneration(player);
             }
         }
     }
@@ -32,5 +36,9 @@ public class Elderstab {
 
     private void give_fireresistance(Player player) {
         player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 60, 1));
+    }
+
+    private void give_regeneration(Player player) {
+        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 60, 3));
     }
 }
