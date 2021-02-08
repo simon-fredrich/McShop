@@ -5,6 +5,7 @@ import de.simonfredrich.mcshop.block_interaction.Elderstab;
 import de.simonfredrich.mcshop.block_interaction.PreventThrow;
 import de.simonfredrich.mcshop.commands.HealCommand;
 import de.simonfredrich.mcshop.commands.HurtCommand;
+import de.simonfredrich.mcshop.listeners.Swords;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
@@ -70,6 +71,7 @@ public final class McShop extends JavaPlugin implements Listener {
         Elderstab elderstab = new Elderstab();
         elderstab.startRunnable();
         Bukkit.getPluginManager().registerEvents(new PreventThrow(), this);
+        Bukkit.getPluginManager().registerEvents(new Swords(), this);
     }
 
     private void load_config() {

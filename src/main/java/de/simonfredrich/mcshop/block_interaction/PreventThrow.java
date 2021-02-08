@@ -18,7 +18,7 @@ public class PreventThrow implements Listener {
         ItemStack dropped_item = e.getItemDrop().getItemStack();
 
         Map<Enchantment, Integer> enchantment = dropped_item.getItemMeta().getEnchants();
-        if (dropped_item.getType().equals(Material.BLAZE_ROD) && enchantment.containsKey(Enchantment.FIRE_ASPECT)) {
+        if (dropped_item.getType().equals(Material.BLAZE_ROD) && enchantment.containsKey(Enchantment.KNOCKBACK)) {
             player.sendMessage("§4Du solltes diese Sache nicht wegschmeißen.");
             e.setCancelled(true);
         }

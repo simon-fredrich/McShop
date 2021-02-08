@@ -18,8 +18,11 @@ public class Elderstab {
             if(hand.getType().equals(Material.BLAZE_ROD) && hand.getItemMeta().getEnchants().containsKey(Enchantment.FIRE_ASPECT)){
                 give_fireresistance(player);
             }
-            if(hand.getType().equals(Material.BLAZE_ROD) && hand.getItemMeta().getEnchants().containsKey(Enchantment.PROTECTION_ENVIRONMENTAL)) {
+            if(hand.getType().equals(Material.BLAZE_ROD) && hand.getItemMeta().getEnchants().containsKey(Enchantment.DAMAGE_ALL) && hand.getItemMeta().getEnchants().containsKey(Enchantment.MENDING)) {
                 give_regeneration(player);
+            }
+            if(hand.getType().equals(Material.NETHERITE_SWORD) && hand.getItemMeta().getEnchants().containsKey(Enchantment.LOOT_BONUS_MOBS) && hand.getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_MOBS)==7) {
+                give_slowness(player);
             }
         }
     }
@@ -31,14 +34,18 @@ public class Elderstab {
             public void run() {
                 spawnParticles();
             }
-        }, 50, 50);//Time in ticks before first run and each time after that
+        }, 20, 20);//Time in ticks before first run and each time after that
     }
 
     private void give_fireresistance(Player player) {
-        player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 60, 1));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 30, 1));
     }
 
     private void give_regeneration(Player player) {
-        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 60, 3));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 30, 3));
+    }
+
+    private void give_slowness(Player player) {
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 40, 4));
     }
 }
