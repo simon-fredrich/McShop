@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -23,6 +24,14 @@ public class Elderstab {
             }
             if(hand.getType().equals(Material.NETHERITE_SWORD) && hand.getItemMeta().getEnchants().containsKey(Enchantment.LOOT_BONUS_MOBS) && hand.getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_MOBS)==7) {
                 give_slowness(player);
+            }
+        }
+
+        for(Player player : Bukkit.getOnlinePlayers()){
+            player.getInventory().getItemInMainHand();
+            ItemStack hand = player.getInventory().getItemInOffHand();
+            if(hand.getType().equals(Material.FEATHER) && hand.getItemMeta().getEnchants().containsKey(Enchantment.MENDING)){
+                give_haste(player);
             }
         }
     }
@@ -47,5 +56,9 @@ public class Elderstab {
 
     private void give_slowness(Player player) {
         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 40, 4));
+    }
+
+    private void give_haste(Player player) {
+        player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 30, 3));
     }
 }
