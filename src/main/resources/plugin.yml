@@ -13,6 +13,9 @@ commands:
   hurt:
     description: This command hurts you.
     aliases: [ "hu" ]
+  trampoline:
+    description: This command results in trampoline fun!
+    aliases: ["tramp"]
 
 permissions:
   de.simonfredrich.mcshop.heal:
